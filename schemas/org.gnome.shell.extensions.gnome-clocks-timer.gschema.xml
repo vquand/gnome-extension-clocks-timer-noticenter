@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.gnome-clocks-timer" path="/org/gnome/shell/extensions/gnome-clocks-timer/">
+    <key name="mode" type="s">
+      <choices>
+        <choice value="normal"/>
+        <choice value="pomodoro"/>
+      </choices>
+      <default>'normal'</default>
+      <summary>Timer mode</summary>
+      <description>Whether the notification timer uses normal durations or Pomodoro focus and break phases.</description>
+    </key>
+    <key name="normal-minutes" type="ai">
+      <default>[5, 15, 30]</default>
+      <summary>Normal timer durations</summary>
+      <description>Up to three quick-start durations in minutes for normal timer mode.</description>
+    </key>
+    <key name="pomodoro-preset" type="s">
+      <default>'classic'</default>
+      <summary>Pomodoro preset</summary>
+      <description>The selected Pomodoro preset identifier.</description>
+    </key>
+    <key name="pomodoro-name" type="s">
+      <default>'Custom'</default>
+      <summary>Custom Pomodoro name</summary>
+      <description>The display name used by the Custom Pomodoro preset.</description>
+    </key>
+    <key name="pomodoro-focus-minutes" type="i">
+      <range min="1" max="1440"/>
+      <default>25</default>
+      <summary>Pomodoro focus duration</summary>
+      <description>Focus duration in minutes for the Custom Pomodoro preset.</description>
+    </key>
+    <key name="pomodoro-break-minutes" type="i">
+      <range min="1" max="1440"/>
+      <default>5</default>
+      <summary>Pomodoro break duration</summary>
+      <description>Break duration in minutes for the Custom Pomodoro preset.</description>
+    </key>
+  </schema>
+</schemalist>

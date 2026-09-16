@@ -1,0 +1,95 @@
+.clocks-timer-top-separator {
+  padding-left: 6px;
+  padding-right: 4px;
+}
+
+.clocks-timer-top-icon {
+  icon-size: 14px;
+  padding-right: 4px;
+}
+
+.clocks-timer-top-label {
+  font-feature-settings: "tnum";
+}
+
+.clocks-timer-duration-row {
+  spacing: 8px;
+}
+
+.clocks-timer-preset-button-box {
+  spacing: 8px;
+}
+
+.clocks-timer-duration-button {
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 700;
+}
+
+.clocks-timer-duration-button.selected {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.clocks-timer-settings-button {
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.clocks-timer-settings-button StIcon {
+  icon-size: 16px;
+}
+
+.clocks-timer-settings-dialog {
+  min-width: 440px;
+}
+
+.clocks-timer-settings-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.clocks-timer-settings-description,
+.clocks-timer-settings-summary {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.clocks-timer-settings-mode-row,
+.clocks-timer-settings-entry-row,
+.clocks-timer-settings-time-row {
+  spacing: 8px;
+}
+
+.clocks-timer-settings-mode-button,
+.clocks-timer-settings-preset-button,
+.clocks-timer-settings-preset-option {
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.clocks-timer-settings-mode-button.selected,
+.clocks-timer-settings-preset-button:hover,
+.clocks-timer-settings-preset-option:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.clocks-timer-settings-panel,
+.clocks-timer-settings-custom-panel,
+.clocks-timer-settings-preset-list {
+  spacing: 8px;
+}
+
+.clocks-timer-settings-section-title,
+.clocks-timer-settings-field-label {
+  font-weight: 700;
+}
+
+.clocks-timer-settings-entry {
+  min-width: 88px;
+  padding: 8px 10px;
+}
+
+.clocks-timer-message .message-title,
+.clocks-timer-message .message-body,
+.clocks-timer-top-label {
+  font-feature-settings: "tnum";
+}

@@ -1,0 +1,10 @@
+{
+  "uuid": "gnome-clocks-timer@willdo",
+  "name": "Notification Center Timer",
+  "description": "Adds a self-contained timer with preset durations to the GNOME date menu and shows an active countdown in the top clock area.",
+  "shell-version": [
+    "50"
+  ],
+  "url": "https://github.com/vquand/gnome-extension-clocks-timer-noticenter",
+  "settings-schema": "org.gnome.shell.extensions.gnome-clocks-timer"
+}
