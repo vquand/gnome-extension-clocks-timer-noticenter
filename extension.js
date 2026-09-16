@@ -50,6 +50,7 @@ function createSettingsEntry(value, hintText) {
     return entry;
 }
 
+const TimerSettingsDialog = GObject.registerClass(
 class TimerSettingsDialog extends ModalDialog.ModalDialog {
     constructor(settings, onSave, onClose) {
         super({styleClass: 'clocks-timer-settings-dialog'});
@@ -325,7 +326,7 @@ class TimerSettingsDialog extends ModalDialog.ModalDialog {
         this.destroy();
         onClose?.();
     }
-}
+});
 
 const TimerMessageSource = GObject.registerClass({
     Properties: {
