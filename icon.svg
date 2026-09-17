@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Notification Center Timer</title>
+  <desc id="desc">A blue timer dial with a twenty-five minute progress arc and orange alarm accent.</desc>
+
+  <defs>
+    <linearGradient id="background" x1="16" y1="12" x2="112" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1f5f9c"/>
+      <stop offset="1" stop-color="#12345c"/>
+    </linearGradient>
+    <linearGradient id="dial" x1="36" y1="32" x2="93" y2="101" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#dce8f4"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#071b33" flood-opacity=".35"/>
+    </filter>
+  </defs>
+
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#background)"/>
+  <path d="M43 25h42" fill="none" stroke="#80d8ee" stroke-linecap="round" stroke-width="7"/>
+  <path d="M50 21v12M78 21v12" fill="none" stroke="#dce8f4" stroke-linecap="round" stroke-width="6"/>
+
+  <circle cx="64" cy="70" r="39" fill="#0b2746" opacity=".3"/>
+  <circle cx="64" cy="66" r="37" fill="url(#dial)" filter="url(#shadow)"/>
+
+  <path d="M64 66V44M64 66l18 11" fill="none" stroke="#163b62" stroke-linecap="round" stroke-width="6"/>
+  <circle cx="64" cy="66" r="6" fill="#f28c28"/>
+
+  <path d="M64 101a35 35 0 1 1 30.31-17.5" fill="none" stroke="#8de3f3" stroke-linecap="round" stroke-width="6"/>
+  <path d="M94.31 83.5l-1.3-11.2M94.31 83.5l-10.3-4.6" fill="none" stroke="#f28c28" stroke-linecap="round" stroke-width="5"/>
+  <circle cx="99" cy="30" r="9" fill="#f28c28" stroke="#12345c" stroke-width="4"/>
+  <path d="M96 30h6" stroke="#fff" stroke-linecap="round" stroke-width="3"/>
+</svg>

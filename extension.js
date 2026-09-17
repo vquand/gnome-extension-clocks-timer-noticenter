@@ -122,10 +122,10 @@ class TimerSettingsDialog extends ModalDialog.ModalDialog {
             style_class: 'clocks-timer-settings-mode-button',
             x_expand: true,
         });
-        button.connect('clicked', () => {
+        button.connectObject('clicked', () => {
             this._mode = mode;
             this._renderMode();
-        });
+        }, this);
         return button;
     }
 
@@ -174,9 +174,9 @@ class TimerSettingsDialog extends ModalDialog.ModalDialog {
             style_class: 'clocks-timer-settings-preset-button',
             x_expand: true,
         });
-        this._presetButton.connect('clicked', () => {
+        this._presetButton.connectObject('clicked', () => {
             this._presetList.visible = !this._presetList.visible;
-        });
+        }, this);
         panel.add_child(this._presetButton);
 
         this._presetList = new St.BoxLayout({
@@ -192,7 +192,8 @@ class TimerSettingsDialog extends ModalDialog.ModalDialog {
                 style_class: 'clocks-timer-settings-preset-option',
                 x_expand: true,
             });
-            button.connect('clicked', () => this._selectPomodoroPreset(preset.id));
+            button.connectObject(
+                'clicked', () => this._selectPomodoroPreset(preset.id), this);
             this._presetList.add_child(button);
         }
         panel.add_child(this._presetList);
@@ -323,8 +324,45 @@ class TimerSettingsDialog extends ModalDialog.ModalDialog {
 
         this._onClose = null;
         this.close();
-        this.destroy();
         onClose?.();
+    }
+
+    destroy() {
+        if (this._destroyed)
+            return;
+        this._destroyed = true;
+
+        this._normalModeButton?.disconnectObject(this);
+        this._pomodoroModeButton?.disconnectObject(this);
+        this._presetButton?.disconnectObject(this);
+
+        this._normalModeButton?.destroy();
+        this._pomodoroModeButton?.destroy();
+        this._presetButton?.destroy();
+        this._presetList?.destroy();
+        this._presetSummary?.destroy();
+        this._customPanel?.destroy();
+        this._modeRow?.destroy();
+        this._normalPanel?.destroy();
+        this._pomodoroPanel?.destroy();
+
+        this._normalModeButton = null;
+        this._pomodoroModeButton = null;
+        this._presetButton = null;
+        this._presetList = null;
+        this._presetSummary = null;
+        this._customPanel = null;
+        this._modeRow = null;
+        this._normalPanel = null;
+        this._pomodoroPanel = null;
+        this._normalEntries = null;
+        this._customNameEntry = null;
+        this._customFocusEntry = null;
+        this._customBreakEntry = null;
+        this._onSave = null;
+        this._onClose = null;
+
+        super.destroy();
     }
 });
 
@@ -413,7 +451,8 @@ class TimerMessage extends MessageList.Message {
             can_focus: true,
             accessible_name: 'Timer settings',
         });
-        this._settingsButton.connect('clicked', () => this._handlers?.settings());
+        this._settingsButton.connectObject(
+            'clicked', () => this._handlers?.settings(), this);
         this._durationRow.add_child(this._settingsButton);
         this._durationButtons = [];
         this._launcherSignature = '';
@@ -447,15 +486,38 @@ class TimerMessage extends MessageList.Message {
             button.accessible_name = profile.mode === 'pomodoro'
                 ? `Start ${minutes} minute focus timer`
                 : `Start ${minutes} minute timer`;
-            button.connect('clicked', () => this._handlers?.durationSelected(minutes));
+            button.connectObject(
+                'clicked', () => this._handlers?.durationSelected(minutes), this);
             this._presetButtonBox.add_child(button);
             return {minutes, button};
         });
     }
 
     destroy() {
+        if (this._destroyed)
+            return;
+        this._destroyed = true;
+
+        this._settingsButton?.disconnectObject(this);
+        for (const {button} of this._durationButtons ?? []) {
+            button.disconnectObject(this);
+            button.destroy();
+        }
+
+        this._settingsButton?.destroy();
+        this._presetButtonBox?.destroy();
+        this._durationRow?.destroy();
+        this._pauseResumeButton?.destroy();
+        this._resetButton?.destroy();
+
         this._handlers = null;
         this._source = null;
+        this._settingsButton = null;
+        this._presetButtonBox = null;
+        this._durationRow = null;
+        this._pauseResumeButton = null;
+        this._resetButton = null;
+        this._durationButtons = null;
 
         super.destroy();
     }
@@ -516,7 +578,6 @@ export default class NotificationCenterTimerExtension extends Extension {
     disable() {
         this._stopTick();
         this._settingsDialog?.close();
-        this._settingsDialog?.destroy();
         this._settingsDialog = null;
         this._removeTimerMessage();
         this._removeTopBarTimer();
@@ -565,8 +626,9 @@ export default class NotificationCenterTimerExtension extends Extension {
     }
 
     _removeTopBarTimer() {
-        for (const actor of [this._topSeparator, this._topIcon, this._topLabel])
-            actor?.destroy();
+        this._topSeparator?.destroy();
+        this._topIcon?.destroy();
+        this._topLabel?.destroy();
 
         this._topSeparator = null;
         this._topIcon = null;
@@ -828,9 +890,9 @@ export default class NotificationCenterTimerExtension extends Extension {
             durationSelected: minutes => this._startPresetTimer(minutes),
             settings: () => this._openSettings(),
         });
-        this._timerMessage.connect('destroy', () => {
+        this._timerMessage.connectObject('destroy', () => {
             this._timerMessage = null;
-        });
+        }, this);
 
         messageView._addMessageAtIndex(
             this._timerMessage,
@@ -859,6 +921,7 @@ export default class NotificationCenterTimerExtension extends Extension {
         if (!message)
             return;
 
+        message.disconnectObject(this);
         this._timerMessage = null;
 
         if (messageView?.messages?.includes(message) && messageView?._removeMessage) {
