@@ -14,6 +14,24 @@ an optional Pomodoro mode.
 
 The timer is self-contained and does not control or sync with GNOME Clocks.
 
+## Screenshots
+
+### Timer and calendar
+
+![Custom Pomodoro timer in the GNOME notification center](screenshots/custom-pomodoro-timer.png)
+
+### Pomodoro settings
+
+![Pomodoro timer settings](screenshots/pomodoro-settings.png)
+
+### Normal timer settings
+
+![Normal timer settings](screenshots/normal-timer-settings.png)
+
+### Top-bar countdown
+
+![Active timer countdown beside the top-bar clock](screenshots/top-bar-countdown.png)
+
 ## Install
 
 This release supports GNOME Shell 50.
